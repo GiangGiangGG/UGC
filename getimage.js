@@ -136,10 +136,9 @@ const cards=kept.map((f,i)=>`
     </div>
   </div>`).join("");
 
-// --- Output ---
-const w=window.open("","_blank");
-if(!w){alert("Popup bị chặn! Cho phép popup rồi thử lại.");return;}
-w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8">
+```js
+// --- Output (không dùng popup) ---
+const html=`<!DOCTYPE html><html><head><meta charset="utf-8">
 <title>Smart Frames · @${username||"unknown"}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -149,6 +148,13 @@ body{background:#111;color:#ddd;font-family:-apple-system,sans-serif;padding:16p
 ${ltkHTML}
 <div style="font-size:12px;color:#444;margin-bottom:12px">${kept.length} frame</div>
 <div id="grid">${cards}</div>
-</body></html>`);
-w.document.close();
-})();
+</body></html>`;
+
+// mở bằng Blob thay vì window.open()
+const blob=new Blob([html],{type:"text/html"});
+const url=URL.createObjectURL(blob);
+
+// chuyển thẳng sang trang kết quả
+location.href=url;
+```
+
