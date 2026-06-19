@@ -1,4 +1,4 @@
-javascript:(async()=>{
+(async()=>{
 
 // --- Lấy tên acc Instagram từ trang hiện tại ---
 function getIGUsername(){
